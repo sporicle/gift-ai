@@ -1,0 +1,25 @@
+<div class="gender-selection-container">
+  <h2>Who is this gift for?</h2>
+  
+  <div class="pills-container">
+    <button 
+      class="pill" 
+      [class.selected]="selectedGender === 'male'"
+      (click)="selectGender('male')">
+      Male
+    </button>
+    <button 
+      class="pill" 
+      [class.selected]="selectedGender === 'female'"
+      (click)="selectGender('female')">
+      Female
+    </button>
+  </div>
+
+  <button 
+    class="next-button" 
+    [disabled]="!selectedGender"
+    (click)="onNext()">
+    Next
+  </button>
+</div> 
