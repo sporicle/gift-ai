@@ -4,6 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 export interface GiftCriteria {
   gender?: 'male' | 'female';
   age?: number;
+  relationship?: string;
 }
 
 @Injectable({

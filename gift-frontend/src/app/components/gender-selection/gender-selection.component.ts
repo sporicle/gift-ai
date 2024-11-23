@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
+import { GiftSelectionService } from '../../services/gift-selection.service';
 
 type Gender = 'male' | 'female';
 
@@ -11,9 +13,12 @@ type Gender = 'male' | 'female';
   styleUrls: ['./gender-selection.component.scss']
 })
 export class GenderSelectionComponent {
-  @Output() genderSelected = new EventEmitter<Gender>();
-  
   selectedGender: Gender | null = null;
+
+  constructor(
+    private router: Router,
+    private giftSelectionService: GiftSelectionService
+  ) {}
 
   selectGender(gender: Gender): void {
     this.selectedGender = gender;
@@ -21,7 +26,8 @@ export class GenderSelectionComponent {
 
   onNext(): void {
     if (this.selectedGender) {
-      this.genderSelected.emit(this.selectedGender);
+      this.giftSelectionService.updateCriteria({ gender: this.selectedGender });
+      this.router.navigate(['/age-selection']);
     }
   }
 } 

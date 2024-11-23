@@ -1,0 +1,52 @@
+<div class="relationship-selection-container">
+  <h2>What is their relationship to you?</h2>
+  
+  <div class="pills-container">
+    <button 
+      class="pill" 
+      [class.selected]="selectedRelationship === 'friend'"
+      (click)="selectRelationship('friend')">
+      Friend
+    </button>
+    <button 
+      class="pill" 
+      [class.selected]="selectedRelationship === 'parent'"
+      (click)="selectRelationship('parent')">
+      Parent
+    </button>
+    <button 
+      class="pill" 
+      [class.selected]="selectedRelationship === 'partner'"
+      (click)="selectRelationship('partner')">
+      Partner
+    </button>
+    <button 
+      class="pill" 
+      [class.selected]="selectedRelationship === 'work colleague'"
+      (click)="selectRelationship('work colleague')">
+      Work Colleague
+    </button>
+    <button 
+      class="pill" 
+      [class.selected]="selectedRelationship === 'other'"
+      (click)="selectRelationship('other')">
+      Someone Else
+    </button>
+  </div>
+
+  <form [formGroup]="relationshipForm" *ngIf="selectedRelationship === 'other'">
+    <div class="input-container">
+      <input 
+        type="text" 
+        formControlName="otherRelationship" 
+        placeholder="Please specify their relationship to you">
+    </div>
+  </form>
+
+  <button 
+    class="next-button" 
+    [disabled]="!selectedRelationship || (selectedRelationship === 'other' && !relationshipForm.get('otherRelationship')?.value)"
+    (click)="onNext()">
+    Next
+  </button>
+</div>
