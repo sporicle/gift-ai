@@ -5,11 +5,17 @@ import { Router } from '@angular/router';
 import { GiftSelectionService } from '../../services/gift-selection.service';
 import { SelectionSummaryComponent } from '../shared/selection-summary/selection-summary.component';
 import { AnimationService } from '../../services/animation.service';
+import { StartOverComponent } from '../shared/start-over/start-over.component';
 
 @Component({
   selector: 'app-price-selection',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, SelectionSummaryComponent],
+  imports: [
+    CommonModule, 
+    ReactiveFormsModule, 
+    SelectionSummaryComponent,
+    StartOverComponent
+  ],
   templateUrl: './price-selection.component.html',
   styleUrls: ['./price-selection.component.scss']
 })

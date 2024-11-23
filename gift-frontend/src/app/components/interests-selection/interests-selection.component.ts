@@ -5,13 +5,14 @@ import { Router } from '@angular/router';
 import { GiftSelectionService } from '../../services/gift-selection.service';
 import { SelectionSummaryComponent } from '../shared/selection-summary/selection-summary.component';
 import { AnimationService } from '../../services/animation.service';
+import { StartOverComponent } from '../shared/start-over/start-over.component';
 
 type PredefinedInterest = 'sports' | 'cooking' | 'beauty' | 'tech' | 'outdoors' | 'art' | 'fitness' | 'travel';
 
 @Component({
   selector: 'app-interests-selection',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, SelectionSummaryComponent],
+  imports: [CommonModule, ReactiveFormsModule, SelectionSummaryComponent, StartOverComponent],
   templateUrl: './interests-selection.component.html',
   styleUrls: ['./interests-selection.component.scss']
 })

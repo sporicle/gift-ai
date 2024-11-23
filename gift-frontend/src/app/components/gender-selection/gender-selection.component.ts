@@ -4,13 +4,18 @@ import { Router } from '@angular/router';
 import { GiftSelectionService } from '../../services/gift-selection.service';
 import { SelectionSummaryComponent } from '../shared/selection-summary/selection-summary.component';
 import { AnimationService } from '../../services/animation.service';
+import { StartOverComponent } from '../shared/start-over/start-over.component';
 
 type Gender = 'male' | 'female';
 
 @Component({
   selector: 'app-gender-selection',
   standalone: true,
-  imports: [CommonModule, SelectionSummaryComponent],
+  imports: [
+    CommonModule, 
+    SelectionSummaryComponent,
+    StartOverComponent
+  ],
   templateUrl: './gender-selection.component.html',
   styleUrls: ['./gender-selection.component.scss']
 })

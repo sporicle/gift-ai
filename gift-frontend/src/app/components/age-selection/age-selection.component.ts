@@ -5,11 +5,17 @@ import { Router } from '@angular/router';
 import { GiftSelectionService } from '../../services/gift-selection.service';
 import { SelectionSummaryComponent } from '../shared/selection-summary/selection-summary.component';
 import { AnimationService } from '../../services/animation.service';
+import { StartOverComponent } from '../shared/start-over/start-over.component';
 
 @Component({
   selector: 'app-age-selection',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, SelectionSummaryComponent],
+  imports: [
+    CommonModule, 
+    ReactiveFormsModule, 
+    SelectionSummaryComponent,
+    StartOverComponent
+  ],
   templateUrl: './age-selection.component.html',
   styleUrls: ['./age-selection.component.scss']
 })

@@ -4,11 +4,12 @@ import { GiftApiService } from '../../services/gift-api.service';
 import { GiftSelectionService } from '../../services/gift-selection.service';
 import { GiftIdea } from '../../models/gift.model';
 import { Observable, switchMap } from 'rxjs';
+import { StartOverComponent } from '../shared/start-over/start-over.component';
 
 @Component({
   selector: 'app-results',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, StartOverComponent],
   templateUrl: './results.component.html',
   styleUrls: ['./results.component.scss']
 })

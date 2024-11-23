@@ -5,13 +5,14 @@ import { Router } from '@angular/router';
 import { GiftSelectionService } from '../../services/gift-selection.service';
 import { SelectionSummaryComponent } from '../shared/selection-summary/selection-summary.component';
 import { AnimationService } from '../../services/animation.service';
+import { StartOverComponent } from '../shared/start-over/start-over.component';
 
 type Relationship = 'friend' | 'parent' | 'partner' | 'work colleague' | 'other';
 
 @Component({
   selector: 'app-relationship-selection',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, SelectionSummaryComponent],
+  imports: [CommonModule, ReactiveFormsModule, SelectionSummaryComponent, StartOverComponent],
   templateUrl: './relationship-selection.component.html',
   styleUrls: ['./relationship-selection.component.scss']
 })
