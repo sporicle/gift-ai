@@ -3,9 +3,10 @@ import { CommonModule } from '@angular/common';
 import { GiftApiService } from '../../services/gift-api.service';
 import { GiftSelectionService } from '../../services/gift-selection.service';
 import { GiftIdea } from '../../models/gift.model';
-import { Observable, switchMap } from 'rxjs';
+import { Observable, Subscription, catchError, of, switchMap } from 'rxjs';
 import { StartOverComponent } from '../shared/start-over/start-over.component';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-results',
@@ -25,14 +26,40 @@ export class ResultsComponent implements OnInit, OnDestroy {
     'Almost there...'
   ];
   private messageInterval: any;
+  private criteriaSubscription: Subscription | null = null;
+  private routerSubscription: Subscription | null = null;
 
   constructor(
     private giftApiService: GiftApiService,
     private giftSelectionService: GiftSelectionService,
     private router: Router
   ) {
+    // Only clear cache when navigating from occasion-selection (start over)
+    this.routerSubscription = this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe((event: any) => {
+      if (event.url === '/results' && event.urlAfterRedirects === '/results') {
+        const previousUrl = this.router.getCurrentNavigation()?.previousNavigation?.finalUrl?.toString();
+        if (previousUrl?.includes('occasion-selection')) {
+          this.giftApiService.clearCache();
+        }
+      }
+    });
+    
     this.giftResults$ = this.giftSelectionService.getCriteria().pipe(
-      switchMap(criteria => this.giftApiService.getGiftSuggestions(criteria))
+      switchMap(criteria => {
+        if (Object.keys(criteria).length === 0) {
+          // If no criteria, redirect to start
+          this.router.navigate(['/occasion-selection']);
+          return of([]);
+        }
+        return this.giftApiService.getGiftSuggestions(criteria).pipe(
+          catchError(error => {
+            console.error('Error fetching gift suggestions:', error);
+            return of([]);
+          })
+        );
+      })
     );
   }
 
@@ -43,15 +70,25 @@ export class ResultsComponent implements OnInit, OnDestroy {
       this.currentLoadingMessage = this.loadingMessages[messageIndex];
     }, 3000);
 
-    // Clean up the interval when results arrive
-    this.giftResults$.subscribe({
-      next: () => this.clearMessageInterval(),
+    // Clean up the interval when results arrive or error occurs
+    this.criteriaSubscription = this.giftResults$.subscribe({
+      next: (results) => {
+        if (results.length > 0) {
+          this.clearMessageInterval();
+        }
+      },
       error: () => this.clearMessageInterval()
     });
   }
 
   ngOnDestroy(): void {
     this.clearMessageInterval();
+    if (this.criteriaSubscription) {
+      this.criteriaSubscription.unsubscribe();
+    }
+    if (this.routerSubscription) {
+      this.routerSubscription.unsubscribe();
+    }
   }
 
   private clearMessageInterval(): void {
