@@ -57,7 +57,10 @@
     </form>
   </div>
 
-  <button class="get-started-button" (click)="onGetStarted()">
+  <button 
+    class="get-started-button" 
+    [disabled]="!giftForm.value.occasion || !giftForm.value.relationship"
+    (click)="onGetStarted()">
     Let's get started
   </button>
 </div> 
