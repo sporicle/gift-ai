@@ -6,14 +6,20 @@
       
       <form [formGroup]="interestsForm">
         <div class="pills-container">
-          <button 
-            *ngFor="let interest of predefinedInterests"
-            type="button"
-            class="pill" 
-            [class.selected]="isSelected(interest)"
-            (click)="toggleInterest(interest)">
-            {{ interest | titlecase }}
-          </button>
+          <ng-container *ngIf="!loading; else loadingInterests">
+            <button 
+              *ngFor="let interest of availableInterests"
+              type="button"
+              class="pill" 
+              [class.selected]="isSelected(interest)"
+              (click)="toggleInterest(interest)">
+              {{ interest.name | titlecase }}
+            </button>
+          </ng-container>
+          
+          <ng-template #loadingInterests>
+            <div class="loading-interests">Loading interests...</div>
+          </ng-template>
         </div>
 
         <div class="custom-interests" formArrayName="customInterests">
