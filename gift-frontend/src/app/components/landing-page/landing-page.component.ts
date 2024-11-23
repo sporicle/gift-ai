@@ -159,7 +159,7 @@ export class LandingPageComponent {
       });
     }
     
-    this.router.navigate(['/gender-selection']);
+    this.router.navigate(['/person-profile']);
   }
 
   hideOccasionDropdownDelayed(): void {

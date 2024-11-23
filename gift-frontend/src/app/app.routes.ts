@@ -1,7 +1,6 @@
 import { Routes } from '@angular/router';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
-import { GenderSelectionComponent } from './components/gender-selection/gender-selection.component';
-import { AgeSelectionComponent } from './components/age-selection/age-selection.component';
+import { PersonProfileComponent } from './components/person-profile/person-profile.component';
 import { InterestsSelectionComponent } from './components/interests-selection/interests-selection.component';
 import { PriceSelectionComponent } from './components/price-selection/price-selection.component';
 import { ResultsComponent } from './components/results/results.component';
@@ -9,8 +8,7 @@ import { SimilarProductsComponent } from './components/similar-products/similar-
 
 export const routes: Routes = [
   { path: '', component: LandingPageComponent },
-  { path: 'gender-selection', component: GenderSelectionComponent },
-  { path: 'age-selection', component: AgeSelectionComponent },
+  { path: 'person-profile', component: PersonProfileComponent },
   { path: 'interests-selection', component: InterestsSelectionComponent },
   { path: 'price-selection', component: PriceSelectionComponent },
   { path: 'results', component: ResultsComponent },

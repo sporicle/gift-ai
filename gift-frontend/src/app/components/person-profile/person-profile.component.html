@@ -1,0 +1,67 @@
+<div class="selection-page-layout">
+  <app-start-over />
+  <div class="main-content">
+    <div class="selection-container">
+      <h2>Tell me more about this person</h2>
+
+      <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+        <div class="form-section">
+          <label>How old are they?</label>
+          <div class="input-container">
+            <input 
+              type="number" 
+              formControlName="age" 
+              placeholder="Enter age"
+              min="1"
+              max="200">
+            
+            <div class="error-message" *ngIf="ageControl?.invalid && ageControl?.touched">
+              <span *ngIf="ageControl?.errors?.['min'] || ageControl?.errors?.['max']">
+                Age must be between 1 and 200
+              </span>
+              <span *ngIf="ageControl?.errors?.['pattern']">
+                Please enter a valid number
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <label>What is their gender?</label>
+          <div class="pills-container">
+            <button 
+              type="button"
+              class="pill" 
+              [class.selected]="profileForm.get('gender')?.value === 'male'"
+              (click)="selectGender('male')">
+              Male
+            </button>
+            <button 
+              type="button"
+              class="pill" 
+              [class.selected]="profileForm.get('gender')?.value === 'female'"
+              (click)="selectGender('female')">
+              Female
+            </button>
+          </div>
+        </div>
+
+        <div class="button-container">
+          <button 
+            type="submit" 
+            class="next-button"
+            [disabled]="!isFormValid()">
+            Next
+          </button>
+          <button 
+            type="button"
+            class="skip-button"
+            (click)="onSkip()">
+            Skip
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <app-selection-summary />
+</div>
