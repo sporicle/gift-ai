@@ -83,20 +83,41 @@
       line-height: 1.5;
     }
 
-    .view-product {
-      width: 100%;
-      padding: 0.75rem;
-      background: #4299e1;
-      color: white;
-      border: none;
-      border-radius: 0.5rem;
-      font-weight: 500;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
+    .button-group {
+      display: flex;
+      gap: 1rem;
       margin-top: auto;
 
-      &:hover {
-        background: #3182ce;
+      .view-product {
+        flex: 2;
+        padding: 0.75rem;
+        background: #4299e1;
+        color: white;
+        border: none;
+        border-radius: 0.5rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+          background: #3182ce;
+        }
+      }
+
+      .see-similar {
+        flex: 1;
+        padding: 0.75rem;
+        background: transparent;
+        color: #4299e1;
+        border: 2px solid #4299e1;
+        border-radius: 0.5rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s ease;
+
+        &:hover {
+          background: rgba(66, 153, 225, 0.1);
+        }
       }
     }
   }

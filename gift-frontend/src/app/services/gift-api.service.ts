@@ -8,7 +8,8 @@ import { GiftCriteria } from './gift-selection.service';
   providedIn: 'root'
 })
 export class GiftApiService {
-  private readonly API_URL = 'https://lesson-planning-036412c815a7.herokuapp.com/api/gift_suggestion';
+  private readonly GIFT_SUGGESTION_API_URL = 'https://lesson-planning-036412c815a7.herokuapp.com/api/gift_suggestion';
+  private readonly SIMILAR_PRODUCTS_API_URL = 'https://lesson-planning-036412c815a7.herokuapp.com/api/related_gifts';
   private readonly CACHE_KEY = 'cachedGiftResults';
 
   constructor(private http: HttpClient) {}
@@ -22,7 +23,7 @@ export class GiftApiService {
 
     const payload = this.formatPayload(criteria);
     
-    return this.http.post<any[]>(this.API_URL, payload).pipe(
+    return this.http.post<any[]>(this.GIFT_SUGGESTION_API_URL, payload).pipe(
       map(response => {
         const giftIdeas = this.mapToGiftIdeas(response);
         this.cacheResults(giftIdeas);
@@ -40,6 +41,16 @@ export class GiftApiService {
       relationship: criteria.relationship,
       occasion: criteria.occasion
     };
+  }
+
+  getSimilarProducts(giftIdea: GiftIdea): Observable<GiftIdea[]> {
+    const payload = {
+        product_name: giftIdea.name,
+        price: giftIdea.price,
+    };
+    return this.http.post<any[]>(this.SIMILAR_PRODUCTS_API_URL, payload).pipe(
+      map(response => this.mapToGiftIdeas(response))
+    );
   }
 
   private mapToGiftIdeas(response: any[]): GiftIdea[] {

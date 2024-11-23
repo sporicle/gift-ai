@@ -1,0 +1,73 @@
+<div class="similar-products-container">
+  <div class="navigation-header">
+    <button class="back-button" (click)="goBack()">
+      ← Back to Results
+    </button>
+  </div>
+
+  <div class="original-product-section" *ngIf="originalProduct">
+    <div class="section-header" (click)="toggleOriginalProduct()" [class.expanded]="isOriginalProductExpanded">
+      <span class="section-label">Similar to</span>
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="gift-card compact" [class.expanded]="isOriginalProductExpanded">
+      <div class="gift-image">
+        <img [src]="originalProduct.imageUrl" [alt]="originalProduct.name">
+      </div>
+      <div class="gift-content">
+        <div class="content-wrapper">
+          <h3>{{originalProduct.name}}</h3>
+          <p class="price">${{originalProduct.price.toFixed(2)}}</p>
+          <p class="justification">{{originalProduct.justification}}</p>
+          <p class="description">{{originalProduct.description}}</p>
+        </div>
+        <div class="button-group">
+          <button class="view-product" (click)="openProductLink(originalProduct.productLink)">
+            View Product
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h2>Similar Products</h2>
+  <div class="results-grid">
+    <ng-container *ngIf="similarProducts$ | async as products; else loading">
+      <div class="gift-card" *ngFor="let product of products">
+        <div class="gift-image">
+          <img [src]="product.imageUrl" [alt]="product.name">
+        </div>
+        <div class="gift-content">
+          <div class="content-wrapper">
+            <h3>{{product.name}}</h3>
+            <p class="price">${{product.price.toFixed(2)}}</p>
+            <p class="justification">{{product.justification}}</p>
+            <p class="description">{{product.description}}</p>
+          </div>
+          <div class="button-group">
+            <button class="view-product" (click)="openProductLink(product.productLink)">
+              View Product
+            </button>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+    
+    <ng-template #loading>
+      <div class="gift-card skeleton" *ngFor="let i of [1,2,3,4,5,6]">
+        <div class="gift-image skeleton-image"></div>
+        <div class="gift-content">
+          <div class="content-wrapper">
+            <div class="skeleton-text skeleton-title"></div>
+            <div class="skeleton-text skeleton-price"></div>
+            <div class="skeleton-text skeleton-description"></div>
+            <div class="skeleton-text skeleton-description"></div>
+          </div>
+          <div class="button-group">
+            <div class="skeleton-button"></div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </div>
+</div> 

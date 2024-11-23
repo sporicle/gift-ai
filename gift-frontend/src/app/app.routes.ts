@@ -7,6 +7,7 @@ import { OccasionSelectionComponent } from './components/occasion-selection/occa
 import { InterestsSelectionComponent } from './components/interests-selection/interests-selection.component';
 import { PriceSelectionComponent } from './components/price-selection/price-selection.component';
 import { ResultsComponent } from './components/results/results.component';
+import { SimilarProductsComponent } from './components/similar-products/similar-products.component';
 
 export const routes: Routes = [
   { path: '', component: LandingPageComponent },
@@ -16,5 +17,6 @@ export const routes: Routes = [
   { path: 'age-selection', component: AgeSelectionComponent },
   { path: 'interests-selection', component: InterestsSelectionComponent },
   { path: 'price-selection', component: PriceSelectionComponent },
-  { path: 'results', component: ResultsComponent }
+  { path: 'results', component: ResultsComponent },
+  { path: 'similar-products/:id', component: SimilarProductsComponent }
 ]; 

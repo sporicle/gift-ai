@@ -5,6 +5,7 @@ import { GiftSelectionService } from '../../services/gift-selection.service';
 import { GiftIdea } from '../../models/gift.model';
 import { Observable, switchMap } from 'rxjs';
 import { StartOverComponent } from '../shared/start-over/start-over.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-results',
@@ -27,7 +28,8 @@ export class ResultsComponent implements OnInit, OnDestroy {
 
   constructor(
     private giftApiService: GiftApiService,
-    private giftSelectionService: GiftSelectionService
+    private giftSelectionService: GiftSelectionService,
+    private router: Router
   ) {
     this.giftResults$ = this.giftSelectionService.getCriteria().pipe(
       switchMap(criteria => this.giftApiService.getGiftSuggestions(criteria))
@@ -61,5 +63,11 @@ export class ResultsComponent implements OnInit, OnDestroy {
 
   openProductLink(url: string): void {
     window.open(url, '_blank');
+  }
+
+  seeSimilarProducts(gift: GiftIdea): void {
+    this.router.navigate(['/similar-products', gift.id], {
+      state: { product: gift }
+    });
   }
 } 
