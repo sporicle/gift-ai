@@ -10,6 +10,23 @@ export interface GiftCriteria {
   price?: number;
 }
 
+export const PREDEFINED_OCCASIONS = [
+  'birthday',
+  'anniversary',
+  'wedding',
+  'Christmas',
+] as const;
+
+export const PREDEFINED_RELATIONSHIPS = [
+  'friend',
+  'parent',
+  'partner',
+  'work colleague',
+] as const;
+
+export type PredefinedOccasion = typeof PREDEFINED_OCCASIONS[number];
+export type PredefinedRelationship = typeof PREDEFINED_RELATIONSHIPS[number];
+
 @Injectable({
   providedIn: 'root'
 })

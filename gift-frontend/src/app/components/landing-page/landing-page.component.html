@@ -1,5 +1,62 @@
 <div class="landing-container">
   <h1>Looking for the perfect gift?</h1>
+  
+  <div class="prompt-container">
+    <form [formGroup]="giftForm" class="prompt-form">
+      <span>Help me find a</span>
+      
+      <div class="input-wrapper">
+        <input
+          type="text"
+          formControlName="occasion"
+          placeholder="any occasion"
+          (focus)="showOccasionDropdown = true"
+          (blur)="hideOccasionDropdownDelayed()"
+          (input)="filterOccasions($event)">
+          
+        <div class="dropdown" *ngIf="showOccasionDropdown" (mousedown)="handleDropdownMousedown($event)">
+          <div class="dropdown-content">
+            <div 
+              class="dropdown-item" 
+              *ngFor="let occasion of filteredOccasions; let i = index"
+              [class.selected]="i === selectedOccasionIndex"
+              [attr.data-index]="i"
+              [attr.data-type]="'occasion'"
+              (click)="selectOccasion(occasion)">
+              {{ occasion }}
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <span>gift for my</span>
+      
+      <div class="input-wrapper">
+        <input
+          type="text"
+          formControlName="relationship"
+          placeholder="relationship"
+          (focus)="showRelationshipDropdown = true"
+          (blur)="hideRelationshipDropdownDelayed()"
+          (input)="filterRelationships($event)">
+          
+        <div class="dropdown" *ngIf="showRelationshipDropdown" (mousedown)="handleDropdownMousedown($event)">
+          <div class="dropdown-content">
+            <div 
+              class="dropdown-item" 
+              *ngFor="let relationship of filteredRelationships; let i = index"
+              [class.selected]="i === selectedRelationshipIndex"
+              [attr.data-index]="i"
+              [attr.data-type]="'relationship'"
+              (click)="selectRelationship(relationship)">
+              {{ relationship }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+
   <button class="get-started-button" (click)="onGetStarted()">
     Let's get started
   </button>

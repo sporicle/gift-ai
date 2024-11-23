@@ -27,6 +27,6 @@ export class StartOverComponent {
   startOver(): void {
     this.giftSelectionService.clearCriteria();
     this.giftApiService.clearCache();
-    this.router.navigate(['/occasion-selection']);
+    this.router.navigate(['/']);
   }
 }
