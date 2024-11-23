@@ -6,18 +6,18 @@ import { GiftSelectionService } from '../../services/gift-selection.service';
 import { SelectionSummaryComponent } from '../shared/selection-summary/selection-summary.component';
 import { AnimationService } from '../../services/animation.service';
 
-type Relationship = 'friend' | 'parent' | 'partner' | 'work colleague' | 'other';
+type Occasion = 'birthday' | 'anniversary' | 'wedding' | 'christmas' | 'valentines' | 'other';
 
 @Component({
-  selector: 'app-relationship-selection',
+  selector: 'app-occasion-selection',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, SelectionSummaryComponent],
-  templateUrl: './relationship-selection.component.html',
-  styleUrls: ['./relationship-selection.component.scss']
+  templateUrl: './occasion-selection.component.html',
+  styleUrls: ['./occasion-selection.component.scss']
 })
-export class RelationshipSelectionComponent {
-  selectedRelationship: Relationship | null = null;
-  relationshipForm: FormGroup;
+export class OccasionSelectionComponent {
+  selectedOccasion: Occasion | null = null;
+  occasionForm: FormGroup;
 
   constructor(
     private fb: FormBuilder,
@@ -25,30 +25,30 @@ export class RelationshipSelectionComponent {
     private giftSelectionService: GiftSelectionService,
     private animationService: AnimationService
   ) {
-    this.relationshipForm = this.fb.group({
-      otherRelationship: ['']
+    this.occasionForm = this.fb.group({
+      otherOccasion: ['']
     });
   }
 
-  selectRelationship(relationship: Relationship): void {
-    this.selectedRelationship = relationship;
-    if (relationship !== 'other') {
-      this.relationshipForm.get('otherRelationship')?.setValue('');
+  selectOccasion(occasion: Occasion): void {
+    this.selectedOccasion = occasion;
+    if (occasion !== 'other') {
+      this.occasionForm.get('otherOccasion')?.setValue('');
     }
   }
 
   onNext(): void {
-    const relationship = this.selectedRelationship === 'other' 
-      ? this.relationshipForm.get('otherRelationship')?.value 
-      : this.selectedRelationship;
+    const occasion = this.selectedOccasion === 'other'
+      ? this.occasionForm.get('otherOccasion')?.value
+      : this.selectedOccasion;
 
-    if (relationship) {
+    if (occasion) {
       this.giftSelectionService.updateCriteria({
-        relationship: relationship
+        occasion: occasion
       });
       this.animationService.triggerPageTransition();
       setTimeout(() => {
-        this.router.navigate(['/gender-selection']);
+        this.router.navigate(['/relationship-selection']);
       }, 250);
     }
   }
@@ -56,7 +56,7 @@ export class RelationshipSelectionComponent {
   onSkip(): void {
     this.animationService.triggerPageTransition();
     setTimeout(() => {
-      this.router.navigate(['/gender-selection']);
+      this.router.navigate(['/relationship-selection']);
     }, 250);
   }
 }

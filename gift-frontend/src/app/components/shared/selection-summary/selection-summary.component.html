@@ -1,0 +1,38 @@
+<div class="selection-summary" 
+     [ngClass]="{
+       'expanded': isExpanded,
+       'initialized': isInitialized
+     }">
+  <button class="summary-toggle" (click)="toggleExpansion()">
+    <span class="toggle-text">{{ isExpanded ? 'Hide Details' : 'Show Details' }}</span>
+    <span class="toggle-icon" [class.expanded]="isExpanded">▼</span>
+  </button>
+  
+  <div class="summary-content" *ngIf="criteria$ | async as criteria">
+    <h3 class="summary-title">Gift / Recipient Summary</h3>
+    <div class="summary-item" *ngIf="criteria.occasion">
+      <span class="label">Occasion:</span>
+      <span class="value">{{criteria.occasion}}</span>
+    </div>
+    <div class="summary-item" *ngIf="criteria.relationship">
+      <span class="label">Relationship:</span>
+      <span class="value">{{criteria.relationship}}</span>
+    </div>
+    <div class="summary-item" *ngIf="criteria.gender">
+      <span class="label">Gender:</span>
+      <span class="value">{{criteria.gender}}</span>
+    </div>
+    <div class="summary-item" *ngIf="criteria.age">
+      <span class="label">Age:</span>
+      <span class="value">{{criteria.age}}</span>
+    </div>
+    <div class="summary-item" *ngIf="criteria.interests?.length">
+      <span class="label">Interests:</span>
+      <span class="value">{{formatValue(criteria.interests)}}</span>
+    </div>
+    <div class="summary-item" *ngIf="criteria.price">
+      <span class="label">Budget:</span>
+      <span class="value">${{criteria.price}}</span>
+    </div>
+  </div>
+</div> 

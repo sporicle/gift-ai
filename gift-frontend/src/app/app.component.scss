@@ -1,4 +1,18 @@
 main {
   width: 100%;
   min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.page-container {
+  width: 100%;
+  min-height: 100vh;
+  opacity: 1;
+  transform: translateX(0);
+  transition: all 0.5s ease-in-out;
+  
+  &.transitioning {
+    opacity: 0;
+    transform: translateX(20px);
+  }
 }

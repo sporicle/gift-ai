@@ -1,4 +1,4 @@
-.relationship-selection-container {
+.price-selection-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -10,35 +10,6 @@
     font-size: 1.5rem;
     margin-bottom: 2rem;
     text-align: center;
-  }
-}
-
-.pills-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  justify-content: center;
-  margin-bottom: 2rem;
-  max-width: 500px;
-}
-
-.pill {
-  padding: 0.75rem 2rem;
-  border: 2px solid #ccc;
-  border-radius: 25px;
-  background: none;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-
-  &:hover {
-    background-color: #f0f0f0;
-  }
-
-  &.selected {
-    background-color: #4CAF50;
-    color: white;
-    border-color: #4CAF50;
   }
 }
 
@@ -64,6 +35,18 @@
   }
 }
 
+.error-message {
+  color: #e53e3e;
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+  text-align: left;
+  
+  span {
+    display: block;
+    margin-top: 0.25rem;
+  }
+}
+
 .button-container {
   display: flex;
   gap: 1rem;
@@ -85,14 +68,37 @@
   }
 }
 
-.error-message {
-  color: #e53e3e;
-  font-size: 0.875rem;
-  margin-top: 0.5rem;
-  text-align: left;
-  
-  span {
-    display: block;
-    margin-top: 0.25rem;
-  }
+.price-input {
+  position: relative;
+  width: 100%;
+  max-width: 300px;
 }
+
+.price-input::before {
+  content: '$';
+  position: absolute;
+  left: 15px;
+  top: 45%;
+  transform: translateY(-50%);
+  color: #333;
+  z-index: 1;
+}
+
+.price-input input {
+  width: 100%;
+  padding: 12px 15px 12px 30px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.price-input input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0,123,255,0.25);
+}
+
+.price-input input::placeholder {
+  color: #999;
+} 

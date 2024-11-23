@@ -1,31 +1,44 @@
-<div class="age-selection-container">
-  <h2>What is their age?</h2>
+<div class="selection-page-layout">
+  <div class="main-content">
+    <div class="selection-container">
+      <h2>How old are they?</h2>
 
-  <form [formGroup]="ageForm" (ngSubmit)="onSubmit()">
-    <div class="input-container">
-      <input 
-        type="number" 
-        formControlName="age" 
-        placeholder="Enter age"
-        min="1"
-        max="200">
-      
-      <div class="error-message" *ngIf="ageControl?.invalid && ageControl?.touched">
-        <span *ngIf="ageControl?.errors?.['required']">Age is required</span>
-        <span *ngIf="ageControl?.errors?.['min'] || ageControl?.errors?.['max']">
-          Age must be between 1 and 200
-        </span>
-        <span *ngIf="ageControl?.errors?.['pattern']">
-          Please enter a valid number
-        </span>
-      </div>
+      <form [formGroup]="ageForm" (ngSubmit)="onSubmit()">
+        <div class="input-container">
+          <input 
+            type="number" 
+            formControlName="age" 
+            placeholder="Enter age"
+            min="1"
+            max="200">
+          
+          <div class="error-message" *ngIf="ageControl?.invalid && ageControl?.touched">
+            <span *ngIf="ageControl?.errors?.['required']">Age is required</span>
+            <span *ngIf="ageControl?.errors?.['min'] || ageControl?.errors?.['max']">
+              Age must be between 1 and 200
+            </span>
+            <span *ngIf="ageControl?.errors?.['pattern']">
+              Please enter a valid number
+            </span>
+          </div>
+        </div>
+
+        <div class="button-container">
+          <button 
+            type="submit" 
+            class="next-button"
+            [disabled]="ageForm.invalid">
+            Next
+          </button>
+          <button 
+            type="button"
+            class="skip-button"
+            (click)="onSkip()">
+            Skip
+          </button>
+        </div>
+      </form>
     </div>
-
-    <button 
-      type="submit" 
-      class="next-button"
-      [disabled]="ageForm.invalid">
-      Next
-    </button>
-  </form>
+  </div>
+  <app-selection-summary />
 </div> 

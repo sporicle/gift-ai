@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -7,53 +7,50 @@ import { SelectionSummaryComponent } from '../shared/selection-summary/selection
 import { AnimationService } from '../../services/animation.service';
 
 @Component({
-  selector: 'app-age-selection',
+  selector: 'app-price-selection',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, SelectionSummaryComponent],
-  templateUrl: './age-selection.component.html',
-  styleUrls: ['./age-selection.component.scss']
+  templateUrl: './price-selection.component.html',
+  styleUrls: ['./price-selection.component.scss']
 })
-export class AgeSelectionComponent implements OnInit {
-  ageForm: FormGroup;
+export class PriceSelectionComponent {
+  priceForm: FormGroup;
 
   constructor(
     private fb: FormBuilder,
-    private giftSelectionService: GiftSelectionService,
     private router: Router,
+    private giftSelectionService: GiftSelectionService,
     private animationService: AnimationService
   ) {
-    this.ageForm = this.fb.group({
-      age: ['', [
+    this.priceForm = this.fb.group({
+      price: ['', [
         Validators.required,
-        Validators.min(1),
-        Validators.max(200),
-        Validators.pattern('^[0-9]*$')
+        Validators.min(0),
+        Validators.pattern('^[0-9]*\.?[0-9]*$')
       ]]
     });
   }
 
-  ngOnInit(): void {}
-
   onSubmit(): void {
-    if (this.ageForm.valid) {
+    if (this.priceForm.valid) {
       this.giftSelectionService.updateCriteria({
-        age: this.ageForm.value.age
+        price: this.priceForm.value.price
       });
       this.animationService.triggerPageTransition();
       setTimeout(() => {
-        this.router.navigate(['/interests-selection']);
+        this.router.navigate(['/results']);
       }, 250);
     }
+  }
+
+  get priceControl() {
+    return this.priceForm.get('price');
   }
 
   onSkip(): void {
     this.animationService.triggerPageTransition();
     setTimeout(() => {
-      this.router.navigate(['/interests-selection']);
+      this.router.navigate(['/results']);
     }, 250);
-  }
-
-  get ageControl() {
-    return this.ageForm.get('age');
   }
 } 

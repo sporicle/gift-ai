@@ -1,0 +1,58 @@
+<div class="selection-page-layout">
+  <div class="main-content">
+    <div class="selection-container">
+      <h2>What are their interests?</h2>
+      
+      <form [formGroup]="interestsForm">
+        <div class="pills-container">
+          <button 
+            *ngFor="let interest of predefinedInterests"
+            type="button"
+            class="pill" 
+            [class.selected]="isSelected(interest)"
+            (click)="toggleInterest(interest)">
+            {{ interest | titlecase }}
+          </button>
+        </div>
+
+        <div class="custom-interests" formArrayName="customInterests">
+          <div *ngFor="let interest of customInterests.controls; let i = index" class="custom-interest-row">
+            <input 
+              type="text" 
+              [formControlName]="i"
+              placeholder="Enter custom interest">
+            <button 
+              type="button"
+              class="remove-button"
+              (click)="removeCustomInterest(i)">
+            </button>
+          </div>
+        </div>
+
+        <button 
+          type="button"
+          class="add-button"
+          (click)="addCustomInterest()">
+          + Add another interest
+        </button>
+
+        <div class="button-container">
+          <button 
+            type="button"
+            class="next-button" 
+            [disabled]="!interestsForm.get('selectedInterests')?.value?.length && !customInterests.length"
+            (click)="onNext()">
+            Next
+          </button>
+          <button 
+            type="button"
+            class="skip-button"
+            (click)="onSkip()">
+            Skip
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <app-selection-summary />
+</div> 
