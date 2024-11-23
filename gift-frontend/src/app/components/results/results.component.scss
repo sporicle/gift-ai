@@ -1,0 +1,151 @@
+.results-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+
+  h1 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #2d3748;
+    font-size: 2rem;
+  }
+}
+
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.gift-card {
+  background: white;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .gift-image {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+
+      &:hover {
+        transform: scale(1.05);
+      }
+    }
+  }
+
+  .gift-content {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+
+    .content-wrapper {
+      flex: 1;
+    }
+
+    h2 {
+      margin: 0 0 0.5rem;
+      color: #2d3748;
+      font-size: 1.25rem;
+    }
+
+    .price {
+      color: #48bb78;
+      font-weight: 600;
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+    }
+
+    .justification {
+      color: #4a5568;
+      font-style: italic;
+      margin-bottom: 1rem;
+    }
+
+    .description {
+      color: #718096;
+      margin-bottom: 1.5rem;
+      line-height: 1.5;
+    }
+
+    .view-product {
+      width: 100%;
+      padding: 0.75rem;
+      background: #4299e1;
+      color: white;
+      border: none;
+      border-radius: 0.5rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin-top: auto;
+
+      &:hover {
+        background: #3182ce;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .results-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  padding: 2rem;
+}
+
+.loading-spinner {
+  width: 50px;
+  height: 50px;
+  border: 3px solid rgba(66, 153, 225, 0.3);
+  border-radius: 50%;
+  border-top-color: #4299e1;
+  animation: spin 1s ease-in-out infinite;
+  margin-bottom: 2rem;
+}
+
+.loading-messages {
+  text-align: center;
+  color: #4a5568;
+  font-size: 1.1rem;
+
+  .current-message {
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+    margin: 0;
+    min-height: 1.5em;
+    
+    &.fade {
+      opacity: 0;
+    }
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+} 

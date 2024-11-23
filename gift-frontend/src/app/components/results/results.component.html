@@ -1,0 +1,31 @@
+<div class="results-container">
+  <h1>Pick the perfect gift!</h1>
+  
+  <ng-container *ngIf="giftResults$ | async as results; else loading">
+    <div class="results-grid">
+      <div class="gift-card" *ngFor="let gift of results">
+        <div class="gift-image">
+          <img [src]="gift.imageUrl" [alt]="gift.name">
+        </div>
+        <div class="gift-content">
+          <h2>{{gift.name}}</h2>
+          <p class="price">${{gift.price.toFixed(2)}}</p>
+          <p class="justification">{{gift.justification}}</p>
+          <p class="description">{{gift.description}}</p>
+          <button class="view-product" (click)="openProductLink(gift.productLink)">
+            View Product
+          </button>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-template #loading>
+    <div class="loading-container">
+      <div class="loading-spinner"></div>
+      <div class="loading-messages">
+        <p class="current-message">{{ currentLoadingMessage }}</p>
+      </div>
+    </div>
+  </ng-template>
+</div> 

@@ -6,6 +6,7 @@ import { RelationshipSelectionComponent } from './components/relationship-select
 import { OccasionSelectionComponent } from './components/occasion-selection/occasion-selection.component';
 import { InterestsSelectionComponent } from './components/interests-selection/interests-selection.component';
 import { PriceSelectionComponent } from './components/price-selection/price-selection.component';
+import { ResultsComponent } from './components/results/results.component';
 
 export const routes: Routes = [
   { path: '', component: LandingPageComponent },
@@ -14,5 +15,6 @@ export const routes: Routes = [
   { path: 'gender-selection', component: GenderSelectionComponent },
   { path: 'age-selection', component: AgeSelectionComponent },
   { path: 'interests-selection', component: InterestsSelectionComponent },
-  { path: 'price-selection', component: PriceSelectionComponent }
+  { path: 'price-selection', component: PriceSelectionComponent },
+  { path: 'results', component: ResultsComponent }
 ]; 
