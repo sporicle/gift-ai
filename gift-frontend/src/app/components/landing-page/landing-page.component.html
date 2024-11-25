@@ -9,13 +9,14 @@
         <input
           type="text"
           formControlName="occasion"
-          placeholder="any occasion"
+          placeholder=""
           (focus)="showOccasionDropdown = true"
           (blur)="hideOccasionDropdownDelayed()"
           (input)="filterOccasions($event)">
           
         <div class="dropdown" *ngIf="showOccasionDropdown" (mousedown)="handleDropdownMousedown($event)">
           <div class="dropdown-content">
+            <div class="dropdown-header">Suggestions</div>
             <div 
               class="dropdown-item" 
               *ngFor="let occasion of filteredOccasions; let i = index"
@@ -35,13 +36,14 @@
         <input
           type="text"
           formControlName="relationship"
-          placeholder="relationship"
+          placeholder=""
           (focus)="showRelationshipDropdown = true"
           (blur)="hideRelationshipDropdownDelayed()"
           (input)="filterRelationships($event)">
           
         <div class="dropdown" *ngIf="showRelationshipDropdown" (mousedown)="handleDropdownMousedown($event)">
           <div class="dropdown-content">
+            <div class="dropdown-header">Suggestions</div>
             <div 
               class="dropdown-item" 
               *ngFor="let relationship of filteredRelationships; let i = index"

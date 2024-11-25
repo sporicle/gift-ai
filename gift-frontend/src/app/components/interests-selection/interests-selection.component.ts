@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormArray, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { GiftSelectionService } from '../../services/gift-selection.service';
-import { SelectionSummaryComponent } from '../shared/selection-summary/selection-summary.component';
 import { AnimationService } from '../../services/animation.service';
 import { StartOverComponent } from '../shared/start-over/start-over.component';
 import { GiftApiService, Interest } from '../../services/gift-api.service';
@@ -11,7 +10,7 @@ import { GiftApiService, Interest } from '../../services/gift-api.service';
 @Component({
   selector: 'app-interests-selection',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, SelectionSummaryComponent, StartOverComponent],
+  imports: [CommonModule, ReactiveFormsModule, StartOverComponent],
   templateUrl: './interests-selection.component.html',
   styleUrls: ['./interests-selection.component.scss']
 })

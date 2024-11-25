@@ -28,8 +28,8 @@ export class LandingPageComponent {
     private giftApiService: GiftApiService
   ) {
     this.giftForm = this.fb.group({
-      occasion: [''],
-      relationship: ['']
+      occasion: ['birthday'],
+      relationship: ['friend']
     });
   }
 
