@@ -124,8 +124,33 @@
 }
 
 @media (max-width: 768px) {
+  .results-container {
+    padding: 1rem;
+  }
+
   .results-grid {
     grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .gift-card {
+    .gift-content {
+      padding: 1rem;
+
+      h2 {
+        font-size: 1.125rem;
+      }
+
+      .button-group {
+        flex-direction: column;
+        gap: 0.75rem;
+
+        .view-product,
+        .see-similar {
+          width: 100%;
+        }
+      }
+    }
   }
 }
 

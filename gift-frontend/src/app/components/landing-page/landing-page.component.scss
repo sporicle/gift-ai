@@ -181,3 +181,33 @@
     font-size: 5rem;
   }
 }
+
+@media (max-width: 768px) {
+  .logo-container {
+    margin-top: 1rem;
+    margin-bottom: 4rem;
+  }
+
+  .logo {
+    font-size: 2.2rem;
+  }
+
+  .prompt-container {
+    margin: 0 1rem 2rem;
+    padding: 1.5rem;
+  }
+
+  .prompt-form {
+    font-size: 1rem;
+    
+    .input-wrapper input {
+      width: 150px;
+      font-size: 1rem;
+    }
+  }
+
+  .get-started-button {
+    padding: 0.875rem 2rem;
+    font-size: 1.125rem;
+  }
+}

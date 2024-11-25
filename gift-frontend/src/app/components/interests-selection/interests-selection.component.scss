@@ -184,4 +184,19 @@
   padding: 2rem;
   color: #666;
   font-style: italic;
+}
+
+@media (max-width: 768px) {
+  .custom-interest-row {
+    margin: 0 1rem;
+    
+    input {
+      font-size: 0.875rem;
+    }
+  }
+
+  .add-button {
+    margin: 0 1rem 2rem;
+    font-size: 0.875rem;
+  }
 } 
